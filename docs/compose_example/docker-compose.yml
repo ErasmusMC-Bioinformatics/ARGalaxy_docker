@@ -21,7 +21,8 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   web:
-    image: "lumc/galaxy-uwsgi:19.05"
+    # image: "lumc/galaxy-uwsgi:19.05"
+    build: ./argalaxy
     # The sleep is needed because this is a compose setup. Galaxy will crash when the database is not ready.
     # In a docker stack+swarm setup the web container will simply restart so this is not needed.
     command: "bash -c 'sleep 10 && /usr/bin/entrypoint.sh'"
@@ -32,6 +33,8 @@ services:
       # Check postgres connection variables here: https://www.postgresql.org/docs/current/libpq-envars.html
       PGUSER: dbuser
       PGPASSWORD: secret
+      GALAXY_CONFIG_ADMIN_USERS: d.vanzessen@erasmusmc.nl
+      GALAXY_CONFIG_CONDA_ENSURE_CHANNELS: iuc,conda-forge,bioconda,defaults,imperial-college-research-computing
     volumes:
       - galaxy-data:/var/lib/galaxy
       - galaxy-static:/opt/galaxy/static
