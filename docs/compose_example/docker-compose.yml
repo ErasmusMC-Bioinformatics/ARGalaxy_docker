@@ -35,6 +35,7 @@ services:
       PGPASSWORD: secret
       GALAXY_CONFIG_ADMIN_USERS: d.vanzessen@erasmusmc.nl
       GALAXY_CONFIG_CONDA_ENSURE_CHANNELS: iuc,conda-forge,bioconda,defaults,imperial-college-research-computing
+      GALAXY_CONFIG_SANITIZE_ALL_HTML: false	
     volumes:
       - galaxy-data:/var/lib/galaxy
       - galaxy-static:/opt/galaxy/static
