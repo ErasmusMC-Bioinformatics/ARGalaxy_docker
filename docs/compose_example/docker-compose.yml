@@ -33,9 +33,10 @@ services:
       # Check postgres connection variables here: https://www.postgresql.org/docs/current/libpq-envars.html
       PGUSER: dbuser
       PGPASSWORD: secret
-      GALAXY_CONFIG_ADMIN_USERS: d.vanzessen@erasmusmc.nl
+      GALAXY_CONFIG_ADMIN_USERS: admin@galaxy.org
       GALAXY_CONFIG_CONDA_ENSURE_CHANNELS: iuc,conda-forge,bioconda,defaults,imperial-college-research-computing
-      GALAXY_CONFIG_SANITIZE_ALL_HTML: false	
+      GALAXY_CONFIG_SANITIZE_ALL_HTML: 'false'
+      GALAXY_CONFIG_CLEANUP_JOB: 'onsuccess'
     volumes:
       - galaxy-data:/var/lib/galaxy
       - galaxy-static:/opt/galaxy/static
