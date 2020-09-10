@@ -5,7 +5,7 @@ USER root
 ADD https://bitbucket.org/kleinstein/changeo/downloads/changeo-0.4.4.tar.gz /root/changeo.tar.gz 
 RUN touch /var/lib/dpkg/status && \
     apt update && \
-    apt install -y file bc python3 python3-pip && \
+    apt install -y file bc python3 python3-pip unzip && \
     pip3 install /root/changeo.tar.gz
 
 USER galaxy
