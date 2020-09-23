@@ -1,5 +1,0 @@
-# This file is empty because uwsgi settings are set in /usr/bin/entrypoint.sh
-# Galaxy can be configured via environment variables or by mounting another
-# galaxy.yml file.
-uwsgi:
-galaxy:
