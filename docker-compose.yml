@@ -8,7 +8,6 @@ volumes:
   galaxy-plugins:
 services:
   db:
-    # Check postgres container information here: https://hub.docker.com/_/postgres
     image: "postgres:9.6"
     environment:
       POSTGRES_USER: dbuser
@@ -19,18 +18,11 @@ services:
       - galaxy_network
     volumes:
       - postgres-data:/var/lib/postgresql/data
-
   web:
-    # image: "lumc/galaxy-uwsgi:19.05"
     build: ./argalaxy
-    # The sleep is needed because this is a compose setup. Galaxy will crash when the database is not ready.
-    # In a docker stack+swarm setup the web container will simply restart so this is not needed.
     command: "bash -c 'sleep 10 && /usr/bin/entrypoint.sh'"
     environment:
-      # Database connection URL information can be found here: https://docs.sqlalchemy.org/en/13/core/engines.html#database-urls
-      # WARNING: An empty connection url such as "postgresql://" will not work with sqlalchemy. At least host and db need to be there.
       GALAXY_CONFIG_DATABASE_CONNECTION: "postgresql://db/galaxydb?client_encoding=utf8"
-      # Check postgres connection variables here: https://www.postgresql.org/docs/current/libpq-envars.html
       PGUSER: dbuser
       PGPASSWORD: secret
       GALAXY_CONFIG_ADMIN_USERS: admin@galaxy.org
@@ -52,7 +44,6 @@ services:
     - type: bind
       source: ./galaxy.nginx
       target: /etc/nginx/conf.d/default.conf
-    # We mount galaxy-root read only so we can use nginx to serve static content.
     - type: volume
       source: galaxy-static
       target: /opt/galaxy/static
