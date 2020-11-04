@@ -27,7 +27,7 @@ To start in deamon mode, start with:
 For a first run, the first command is probably better.
 
 When you see this:  
-![serving](img/serving.png)
+![serving](img/serving.png)  
 You will know that the Galaxy server is running.
 
 Go to the IP address/URL of the machine that is running Galaxy or localhost:  
